@@ -1,47 +1,93 @@
-# Pruebas de API con Postman y Newman: Petstore
+<div align="center">
 
-Colección de Postman para probar el ciclo de vida de un usuario en la API pública Petstore (`https://petstore.swagger.io/v2`): creación, consulta, actualización, verificación, eliminación y consulta final.
+# 🐾 Pruebas de API con Postman y Newman
 
-## Requisitos
+### Petstore · Automatización de pruebas para una API REST
 
-- Node.js (con npm).
-- Newman 6.
-- `newman-reporter-htmlextra` 1.23.1.
+[![Postman](https://img.shields.io/badge/Postman-Collection-orange?logo=postman&logoColor=white)](Tienda%20de%20mascotas.postman_collection.json)
+[![Newman](https://img.shields.io/badge/Newman-6-6A4C93)](https://www.npmjs.com/package/newman)
+[![Resultado](https://img.shields.io/badge/Tests-23%20aprobados-brightgreen)](#-resultado-de-la-ejecución)
 
-## Ejecución
+**Práctica de API testing realizada con Postman y ejecutada desde la terminal con Newman.**
 
-Desde esta carpeta, ejecutar:
+[Colección](Tienda%20de%20mascotas.postman_collection.json) · [Informe HTML](reports/informe.html)
 
-```sh
-npx newman run "Tienda de mascotas.postman_collection.json" -r cli,htmlextra --reporter-htmlextra-export reports/informe.html
+</div>
+
+---
+
+## 📌 Sobre el proyecto
+
+La colección verifica el ciclo de vida de un usuario en la API pública [Swagger Petstore](https://petstore.swagger.io/): crea un usuario, consulta sus datos, los actualiza y comprueba su eliminación.
+
+El objetivo de esta práctica es aplicar comprobaciones funcionales y de respuesta HTTP, y poder ejecutar la colección fuera de Postman mediante Newman.
+
+## ✅ Qué se comprueba
+
+| Operación | Comprobaciones principales |
+|---|---|
+| Crear usuario | Estado HTTP, código de respuesta, tipo de contenido y tiempo de respuesta |
+| Consultar usuario | Estado HTTP, tipo de contenido, tiempo de respuesta y username |
+| Actualizar usuario | Estado HTTP, tipo de contenido y tiempo de respuesta |
+| Verificar actualización | Datos actualizados del usuario, estado HTTP, tipo de contenido y tiempo de respuesta |
+| Eliminar usuario | Estado HTTP, tipo de contenido y tiempo de respuesta |
+| Confirmar eliminación | Respuesta `404`, tipo de contenido y tiempo de respuesta |
+
+Las comprobaciones de tiempo esperan una respuesta inferior a **2000 ms**.
+
+## 🧰 Herramientas
+
+- **Postman** — diseño y exportación de la colección.
+- **Newman 6** — ejecución de la colección desde la línea de comandos.
+- **htmlextra** — generación de un informe HTML de la ejecución.
+- **Swagger Petstore** — API pública bajo prueba.
+
+## 🚀 Cómo ejecutarlo
+
+Necesitas [Node.js y npm](https://nodejs.org/). Desde la raíz del repositorio:
+
+1. Instala las dependencias del informe:
+
+   ```bash
+   npm install
+   ```
+
+2. Ejecuta la colección y genera el informe:
+
+   ```bash
+   npx newman@6 run "Tienda de mascotas.postman_collection.json" -r cli,htmlextra --reporter-htmlextra-export reports/informe.html
+   ```
+
+El resultado detallado queda disponible en [`reports/informe.html`](reports/informe.html).
+
+## 📊 Resultado de la ejecución
+
+En la última ejecución verificada:
+
+| Métrica | Resultado |
+|---|---:|
+| Peticiones ejecutadas | 6 |
+| Tests/assertions ejecutados | 23 |
+| Aprobados | 23 |
+| Fallidos | 0 |
+
+> Petstore es un servicio público; su disponibilidad y sus tiempos de respuesta pueden variar entre ejecuciones.
+
+## 📁 Contenido
+
+```text
+├── Tienda de mascotas.postman_collection.json
+├── reports/
+│   └── informe.html
+├── package.json
+├── package-lock.json
+└── README.md
 ```
 
-## Tests y resultados reales
+---
 
-Resultado de la ejecución real: **6 peticiones, 23 tests, 23 pasaron y 0 fallaron**.
+<div align="center">
 
-| Petición | Test | Resultado |
-|---|---|---|
-| Crear usuario | Estado HTTP 200 | Pasó |
-| Crear usuario | Tiempo de respuesta menor de 2000 ms | Pasó |
-| Crear usuario | Content-Type JSON cuando hay cuerpo | Pasó |
-| Crear usuario | La respuesta contiene code 200 | Pasó |
-| Traer usuario | Estado HTTP 200 | Pasó |
-| Traer usuario | Tiempo de respuesta menor de 2000 ms | Pasó |
-| Traer usuario | Content-Type JSON cuando hay cuerpo | Pasó |
-| Traer usuario | El username coincide con la variable | Pasó |
-| Actualizar datos usuario | Estado HTTP 200 | Pasó |
-| Actualizar datos usuario | Tiempo de respuesta menor de 2000 ms | Pasó |
-| Actualizar datos usuario | Content-Type JSON cuando hay cuerpo | Pasó |
-| Traer usuario (verificar cambio) | Estado HTTP 200 | Pasó |
-| Traer usuario (verificar cambio) | Tiempo de respuesta menor de 2000 ms | Pasó |
-| Traer usuario (verificar cambio) | Content-Type JSON cuando hay cuerpo | Pasó |
-| Traer usuario (verificar cambio) | El username coincide con la variable | Pasó |
-| Traer usuario (verificar cambio) | El lastName actualizado es villa | Pasó |
-| Traer usuario (verificar cambio) | El email actualizado es villa@gmail.com | Pasó |
-| Borrar usuario | Estado HTTP 200 | Pasó |
-| Borrar usuario | Tiempo de respuesta menor de 2000 ms | Pasó |
-| Borrar usuario | Content-Type JSON cuando hay cuerpo | Pasó |
-| Traer usuario (esperar 404) | Estado HTTP 404 | Pasó |
-| Traer usuario (esperar 404) | Tiempo de respuesta menor de 2000 ms | Pasó |
-| Traer usuario (esperar 404) | Content-Type JSON cuando hay cuerpo | Pasó |
+Proyecto de práctica · API Testing · Postman + Newman
+
+</div>
